@@ -87,7 +87,7 @@ pub fn start_listener(app_handle: AppHandle, toggle_menu_item: MenuItem<Wry>) {
             if !app_state.listening {
                 return;
             }
-            let input_event = match event.event_type {
+            let input_event: Option<InputEvent> = match event.event_type {
                 EventType::KeyPress(key) => Some(InputEvent::KeyEvent {
                     pressed: true,
                     name: format!("{:?}", key),
@@ -128,7 +128,10 @@ pub fn start_listener(app_handle: AppHandle, toggle_menu_item: MenuItem<Wry>) {
                 }
             };
 
-            app_handle.emit("input-event", input_event).unwrap();
+            // emit event (ignore errors if webview is not ready)
+            if let Some(event) = input_event {
+                let _ = app_handle.emit("input-event", event);
+            }
         }) {
             eprintln!("rdev listen failed: {:?}", err);
         }

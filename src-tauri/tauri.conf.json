@@ -22,7 +22,8 @@
         "transparent": true,
         "focus": false,
         "focusable": false,
-        "visible": false
+        "visible": false,
+        "backgroundThrottling": "disabled"
       }
     ],
     "macOSPrivateApi": true
