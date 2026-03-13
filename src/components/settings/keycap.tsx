@@ -13,6 +13,8 @@ import { AlignHorizontalCenterIcon, AlignLeftIcon, AlignRightIcon, Download01Ico
 import { HugeiconsIcon } from "@hugeicons/react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "../ui/collapsible";
+import { Keycap } from "@/components/keycaps";
+import { KeyEvent } from "@/types/event";
 
 export interface KeycapTheme {
     name: string;
@@ -227,6 +229,16 @@ export const KeycapSettings = () => {
                 </Button>
             </ItemActions>
         </Item>
+
+        {/* Preview Section */}
+        <div className="flex flex-col gap-2 pt-2">
+            <h2 className="text-sm text-muted-foreground font-medium">Preview</h2>
+            <div className="flex flex-wrap gap-2 p-4 bg-muted/20 rounded-lg justify-center items-center min-h-[120px]">
+                <Keycap event={new KeyEvent("KeyA")} isPressed={false} lastest={true} />
+                <Keycap event={new KeyEvent("ShiftLeft")} isPressed={false} lastest={true} />
+                <Keycap event={new KeyEvent("Return")} isPressed={false} lastest={true} />
+            </div>
+        </div>
 
         <Collapsible defaultOpen={true}>
             <CollapsibleTrigger>
